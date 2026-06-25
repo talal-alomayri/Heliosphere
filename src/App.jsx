@@ -15,8 +15,8 @@ import JupiterPage from "./solarSystem/outerPlanets/jupiterPage";
 import SaturnPage from "./solarSystem/outerPlanets/saturnPage";
 import UranusPage from "./solarSystem/outerPlanets/uranusPage";
 import NeptunePage from "./solarSystem/outerPlanets/neptunePage";
-import BlackHoleInfoPage from "./blackHole/balckHoleInfoPage";
-import SupernovaInfoPage from "./supernove/supernoveInofPage";
+import BlackHoleInfoPage from "./blackHole/blackHoleInfoPage";
+import SupernovaInfoPage from "./supernove/supernovaInfoPage";
 
 
 function App() {
