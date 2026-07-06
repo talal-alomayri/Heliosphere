@@ -118,8 +118,12 @@ export default function Categories() {
   }, []);
 
   const handleCardClick = (path) => {
-    const tl = gsap.timeline({ onComplete: () => navigate(path) });
-    tl.to(containerRef.current, { opacity: 0, duration: 0.4, ease: "power2.in" });
+    gsap.to(containerRef.current, {
+      opacity: 0,
+      duration: 0.4,
+      ease: "power2.in",
+      onComplete: () => navigate(path),
+    });
   };
 
   return (
