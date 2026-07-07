@@ -18,13 +18,35 @@ export default function Navbar({ onNavClick }) {
   ];
 
   return (
-    <nav className="w-full fixed top-0 z-50 bg-transparent">
+    /*
+     * <nav> is now position:relative with NO border-b.
+     * A thin absolute div acts as the persistent faint baseline.
+     * Interactive elements overlay it with a bright white border on hover.
+     */
+    <nav className="w-full fixed top-0 z-50 bg-transparent relative">
+
+      {/* ── Faint baseline — sits at the very bottom of the nav bar ── */}
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-white/20 z-0" />
+
       <div className="flex items-center justify-between px-6 py-3">
 
         {/* ── Left: Site Title ──────────────────────────────────────── */}
+        {/*
+          relative z-10     → sits above the baseline div so the hover border
+                               covers (masks) the faint line beneath it.
+          border-b           → space for the border is always reserved — no jump.
+          border-transparent → invisible at rest.
+          hover:border-white → bright white snaps in on hover, overlaying baseline.
+          pb-[1px] -mb-[1px] → pulls the element's bottom edge flush with the
+                               nav's bottom so the border overlaps the baseline.
+        */}
         <h1
           onClick={() => navigate("/")}
-          className="text-3xl md:text-4xl font-bold text-yellow-400 cursor-pointer transition-all duration-300 hover:scale-105"
+          className="relative z-10
+                     text-3xl md:text-5xl font-bold text-white cursor-pointer
+                     transition-all duration-300 hover:scale-105
+                     border-b border-transparent hover:border-white
+                     pb-[1px] -mb-[1px]"
           style={{ textShadow: "0 0 1px #fbbf24, 0 0 8px #fbbf24" }}
         >
           HELIOSPHERE
@@ -37,7 +59,12 @@ export default function Navbar({ onNavClick }) {
               <button
                 key={id}
                 onClick={() => onNavClick(id)}
-                className="px-4 py-1.5 text-sm md:text-base font-bold text-yellow-300 border border-yellow-400/50 bg-black/20 backdrop-blur-sm transition-all duration-300 hover:bg-yellow-400/20 hover:text-yellow-200 hover:border-yellow-300 hover:scale-105"
+                // Same overlay technique — bright segment lights up the baseline
+                className="relative z-10
+                           px-4 py-1.5 text-lg md:text-2xl text-white
+                           transition-all duration-300 hover:scale-105
+                           border-b border-transparent hover:border-white
+                           pb-[1px] -mb-[1px]"
                 style={{ textShadow: "0 0 4px #fbbf24" }}
               >
                 {label}

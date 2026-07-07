@@ -3,6 +3,7 @@ import Home from "./pages/home";
 import Categories from "./pages/categories";
 import SolarSystemCategories from "./solarSystem/pages/solarSystemCategories";
 import SunPage from "./solarSystem/pages/sunPage";
+import AsteroidBeltPage from "./solarSystem/pages/asteroidBeltPage";
 import InnerPlanetsPage from "./solarSystem/innerPlanets/innerPlanetsPage";
 import OuterPlanetsPage from "./solarSystem/outerPlanets/outerPlanetsPage";
 import MercuryPage from "./solarSystem/innerPlanets/mercuryPage";
@@ -30,6 +31,7 @@ function App() {
           element={<SolarSystemCategories />}
         />
         <Route path="/solarSystem/sunPage" element={<SunPage />} />
+        <Route path="/solarSystem/asteroidBeltPage" element={<AsteroidBeltPage />} />
         <Route path="/solarSystem/innerPlanetsPage" element={<InnerPlanetsPage />} />
         <Route path="/solarSystem/innerPlanetsPage/mercury" element={<MercuryPage />} />
         <Route path="/solarSystem/innerPlanetsPage/venus" element={<VenusPage />} />

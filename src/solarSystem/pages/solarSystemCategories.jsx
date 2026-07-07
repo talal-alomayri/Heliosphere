@@ -4,8 +4,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Navbar from '../../components/Navbar';
 import StarsBackground from '../../components/StarsBackground';
+import backgroundImg from '../../assets/images/Background.png';
 import sunImg from '../../assets/images/sun-pixel.png';
 import innerPlanetsImg from '../../assets/images/inner-planets-pixel.png';
+import asteroidBeltImg from '../../assets/images/asteroid-belt-background-pixel.png';
 import outerPlanetsImg from '../../assets/images/outer-planets-pixel.png';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -13,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SolarSystemCategories() {
   const navigate = useNavigate();
   const containerRef = useRef(null);
+  const titleRef     = useRef(null); // ← for entrance animation
 
   // ── Individual element refs for directional ScrollTrigger animations ────────
   // Each card is split into two halves: image + content.
@@ -23,8 +26,31 @@ export default function SolarSystemCategories() {
   const sunContentRef     = useRef(null);
   const innerImageRef     = useRef(null);
   const innerContentRef   = useRef(null);
+  const asteroidImageRef  = useRef(null);
+  const asteroidContentRef = useRef(null);
   const outerImageRef     = useRef(null);
   const outerContentRef   = useRef(null);
+
+  // ── Page entrance animations (run once on mount) ─────────────────────────
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Container: fade in from transparent (same as home.jsx)
+      gsap.fromTo(
+        containerRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.6, ease: 'power2.out' }
+      );
+
+      // Title: rises + fades in (mirrors home hero title)
+      gsap.fromTo(
+        titleRef.current,
+        { y: 40, opacity: 0 },
+        { y: 0, opacity: 1, duration: 1.2, ease: 'power3.out', delay: 0.2 }
+      );
+    }, containerRef);
+
+    return () => ctx.revert();
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -61,10 +87,16 @@ export default function SolarSystemCategories() {
         slide(innerContentRef.current, '100%',  innerContentRef.current);
       }
 
-      // ── Outer Planets card (image from RIGHT, content from LEFT) ───────────
+      // ── Asteroid Belt card (image from RIGHT, content from LEFT) ───────────
+      if (asteroidImageRef.current && asteroidContentRef.current) {
+        slide(asteroidImageRef.current,   '100%', asteroidImageRef.current);
+        slide(asteroidContentRef.current, '-100%', asteroidContentRef.current);
+      }
+
+      // ── Outer Planets card (image from LEFT, content from RIGHT) ───────────
       if (outerImageRef.current && outerContentRef.current) {
-        slide(outerImageRef.current,   '100%', outerImageRef.current);
-        slide(outerContentRef.current, '-100%', outerContentRef.current);
+        slide(outerImageRef.current,   '-100%', outerImageRef.current);
+        slide(outerContentRef.current, '100%', outerContentRef.current);
       }
 
     }, containerRef);
@@ -109,11 +141,11 @@ export default function SolarSystemCategories() {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           style={{
             maskImage: imageRight
-              ? 'linear-gradient(to left, black 30%, transparent 100%)'
-              : 'linear-gradient(to right, black 30%, transparent 100%)',
+              ? 'linear-gradient(to left, black 80%, transparent 100%)'
+              : 'linear-gradient(to right, black 70%, transparent 100%)',
             WebkitMaskImage: imageRight
-              ? 'linear-gradient(to left, black 30%, transparent 100%)'
-              : 'linear-gradient(to right, black 30%, transparent 100%)',
+              ? 'linear-gradient(to left, black 80%, transparent 100%)'
+              : 'linear-gradient(to right, black 70%, transparent 100%)',
           }}
         />
       </div>
@@ -125,11 +157,11 @@ export default function SolarSystemCategories() {
         className={`flex-1 flex flex-col justify-center px-10 py-8 ${imageRight ? 'text-left' : 'text-right'}`}
       >
         <h2
-          className={`text-4xl md:text-6xl font-bold text-${accentClass} mb-4 transition-all duration-500 ease-out neon-text`}
+          className={`text-4xl md:text-7xl font-bold text-${accentClass} mb-4 transition-all duration-500 ease-out `}
         >
           {title}
         </h2>
-        <p className="text-white/70 text-lg md:text-xl leading-relaxed">
+        <p className="text-white/90 text-lg md:text-2xl leading-relaxed">
           {description}
         </p>
       </div>
@@ -160,13 +192,28 @@ export default function SolarSystemCategories() {
   };
 
   return (
-    <div ref={containerRef} className="min-h-screen relative overflow-x-hidden">
+    <div
+      ref={containerRef}
+      className="min-h-screen relative overflow-x-hidden"
+      style={{
+        backgroundImage: `url(${backgroundImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <Navbar />
+
+      {/* Animated star field layered on top of the background image */}
       <StarsBackground />
 
       {/* ── Page header ─────────────────────────────────────────────────────── */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">
-        <h1 className="text-6xl md:text-8xl font-bold text-yellow-400 neon-text text-center px-4">
+        <h1
+          ref={titleRef}
+          className="text-6xl md:text-8xl font-bold text-white text-center px-4"
+          style={{ textShadow: '0 0 10px #22d3ee, 0 0 30px #22d3ee, 0 0 60px #06b6d4' }}
+        >
           SOLAR SYSTEM
         </h1>
       </div>
@@ -183,8 +230,8 @@ export default function SolarSystemCategories() {
           imageAlt="The Sun"
           title="THE SUN"
           description="The blazing heart of our Solar System — a nearly perfect sphere of hot plasma powered by nuclear fusion, radiating light and heat that sustains all life on Earth."
-          accentClass="yellow-400"
-          bgClass="bg-yellow-950/60"
+          accentClass="white"
+          bgClass=""
           onClick={() => handleClick('/solarSystem/sunPage')}
         />
 
@@ -197,22 +244,36 @@ export default function SolarSystemCategories() {
           imageAlt="Inner Planets"
           title="INNER PLANETS"
           description="Mercury, Venus, Earth, and Mars — the four rocky worlds closest to the Sun, each with their own extreme climates, geological histories, and cosmic secrets."
-          accentClass="blue-400"
-          bgClass="bg-blue-950/60"
+          accentClass="white"
+          bgClass=""
           onClick={() => handleClick('/solarSystem/innerPlanetsPage')}
         />
 
-        {/* Outer Planets — image from RIGHT */}
+        {/* Asteroid Belt — image from RIGHT */}
+        <SectionCard
+          imageRef={asteroidImageRef}
+          contentRef={asteroidContentRef}
+          imageRight={true}
+          imageSrc={asteroidBeltImg}
+          imageAlt="Asteroid Belt"
+          title="ASTEROID BELT"
+          description="A vast ring of rocky debris and dwarf planets orbiting between Mars and Jupiter — remnants of the early Solar System that never formed into a planet."
+          accentClass="white"
+          bgClass=""
+          onClick={() => handleClick('/solarSystem/asteroidBeltPage')}
+        />
+
+        {/* Outer Planets — image from LEFT */}
         <SectionCard
           imageRef={outerImageRef}
           contentRef={outerContentRef}
-          imageRight={true}
+          imageRight={false}
           imageSrc={outerPlanetsImg}
           imageAlt="Outer Planets"
           title="OUTER PLANETS"
           description="Jupiter, Saturn, Uranus, and Neptune — the colossal gas and ice giants of the outer Solar System, each crowned with rings, dozens of moons, and violent storms."
-          accentClass="purple-400"
-          bgClass="bg-purple-950/60"
+          accentClass="white"
+          bgClass=""
           onClick={() => handleClick('/solarSystem/outerPlanetsPage')}
         />
 

@@ -17,8 +17,8 @@ export default function SolarSystemCard({ imageRef, contentRef }) {
           alt="solar-system" 
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           style={{
-            maskImage: "linear-gradient(to left, black 30%, transparent 100%)",
-            WebkitMaskImage: "linear-gradient(to left, black 30%, transparent 100%)"
+            maskImage: "linear-gradient(to left, black 80%, transparent 100%)",
+            WebkitMaskImage: "linear-gradient(to left, black 70%, transparent 100%)"
           }}
         />
       </div>
@@ -29,7 +29,7 @@ export default function SolarSystemCard({ imageRef, contentRef }) {
         className="absolute left-0 top-0 w-1/2 h-full flex flex-col justify-center px-8"
       >
         <h2 
-          className="text-4xl md:text-6xl font-bold text-orange-300 mb-4 transition-all duration-500 ease-out"
+          className="text-4xl md:text-7xl font-bold text-white mb-4 transition-all duration-500 ease-out"
           style={{
             opacity: isHovered ? 1 : 0.5,
             transform: isHovered ? "translateX(0)" : "translateX(-8px)",
@@ -41,7 +41,7 @@ export default function SolarSystemCard({ imageRef, contentRef }) {
           SOLAR SYSTEM
         </h2>
         <p 
-          className="text-orange-100 text-lg md:text-xl transition-opacity duration-500"
+          className="text-orange-100 text-lg md:text-2xl transition-opacity duration-500"
           style={{
             opacity: isHovered ? 0.9 : 0.3
           }}

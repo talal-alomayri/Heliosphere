@@ -3,11 +3,23 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Navbar from "../../components/Navbar";
 import StarsBackground from "../../components/StarsBackground";
+import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.png";
 import mercuryImg from "../../assets/images/planet-mercury-alone-pixel.png";
 import venusImg from "../../assets/images/planet-venus-alone-pixel.png";
 import earthImg from "../../assets/images/planet-earth-alone-pixel.png";
 import marsImg from "../../assets/images/planet-mars-alone-pixel.png";
 
+// ─── PLANET CONFIGURATION ────────────────────────────────────────────────────
+// size          → diameter of the planet image in px
+// left / top    → anchor point as % of the viewport  (ONLY left, never right)
+// clipRadius    → radius of the circular hitbox as a % of the element size.
+//                 50% = full inscribed circle. Lower = tighter around the sphere.
+// hoverTextClass→ Tailwind text-size classes for the hover label.
+// labelOffset   → nudge the label from dead-center.  { x: "0px", y: "0px" }
+//                 Positive x  → right   Negative x → left
+//                 Positive y  → down    Negative y → up
+//                 Accepts any CSS length: px, %, em, rem …
+// ─────────────────────────────────────────────────────────────────────────────
 const PLANETS = [
   {
     name: "MERCURY",
@@ -15,7 +27,12 @@ const PLANETS = [
     img: mercuryImg,
     labelColor: "#d6d3d1",
     glowColor: "rgba(168,162,158,0.7)",
-    size: "100px",
+    size: "350px",
+    left: "11%",
+    top: "75%",
+    clipRadius: "40%",
+    hoverTextClass: "text-5xl md:text-7xl",
+    labelOffset: { x: "0px", y: "0px" }, // ← nudge label position
   },
   {
     name: "VENUS",
@@ -23,7 +40,12 @@ const PLANETS = [
     img: venusImg,
     labelColor: "#fdba74",
     glowColor: "rgba(249,115,22,0.7)",
-    size: "200px",
+    size: "750px",
+    left: "32%",
+    top: "45%",
+    clipRadius: "25%",
+    hoverTextClass: "text-6xl md:text-8xl",
+    labelOffset: { x: "2px", y: "0px" }, // ← nudge label position
   },
   {
     name: "EARTH",
@@ -31,7 +53,12 @@ const PLANETS = [
     img: earthImg,
     labelColor: "#67e8f9",
     glowColor: "rgba(34,211,238,0.7)",
-    size: "500px",
+    size: "750px",
+    left: "60%",
+    top: "68%",
+    clipRadius: "30%",
+    hoverTextClass: "text-6xl md:text-8xl",
+    labelOffset: { x: "50px", y: "0px" }, // ← nudge label position
   },
   {
     name: "MARS",
@@ -39,7 +66,12 @@ const PLANETS = [
     img: marsImg,
     labelColor: "#fca5a5",
     glowColor: "rgba(239,68,68,0.7)",
-    size: "200px",
+    size: "600px",
+    left: "91%",
+    top: "50%",
+    clipRadius: "25%",
+    hoverTextClass: "text-6xl md:text-8xl",
+    labelOffset: { x: "10px", y: "0px" }, // ← nudge label position
   },
 ];
 
@@ -48,7 +80,6 @@ export default function InnerPlanetsPage() {
   const containerRef = useRef(null);
   const [hoveredIdx, setHoveredIdx] = useState(-1);
 
-  // Page entrance fade only — no planet animations
   useEffect(() => {
     gsap.fromTo(
       containerRef.current,
@@ -72,69 +103,161 @@ export default function InnerPlanetsPage() {
       className="h-screen overflow-hidden relative bg-black"
     >
       <Navbar />
+
+      {/* Background image — sits below the stars layer */}
+      <img
+        src={innerPlanetsBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+      />
+
+      {/* Animated star field on top of the background image */}
       <StarsBackground />
 
       {/* Page title */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex justify-center pt-20 pointer-events-none">
+      <div className="absolute top-0 left-0 right-0 z-20 flex justify-center pt-20  pointer-events-none">
         <h1
-          className="text-4xl md:text-6xl font-bold text-blue-400"
+          className="text-6xl md:text-8xl font-bold text-white"
           style={{ textShadow: "0 0 8px #22d3ee, 0 0 24px #0891b2" }}
         >
           INNER PLANETS
         </h1>
       </div>
 
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-8 md:gap-x-12 md:gap-y-12">
-          {PLANETS.map((planet, i) => (
+      {/* Full-viewport arena */}
+      <div className="absolute inset-0 z-10">
+        {PLANETS.map((planet, i) => {
+          const isHovered = hoveredIdx === i;
+
+          return (
+            // ── LAYER 1: Zero-size coordinate anchor ─────────────────────────
+            // width:0 height:0 + pointer-events:none means this div has
+            // ZERO footprint — it can never intercept any mouse events.
+            // left/top pin the anchor at the planet's centre point.
             <div
               key={planet.name}
-              className="relative flex items-center justify-center cursor-pointer select-none"
-              onMouseEnter={() => setHoveredIdx(i)}
-              onMouseLeave={() => setHoveredIdx(-1)}
-              onClick={() => handleClick(planet.path)}
+              style={{
+                position: "absolute",
+                left: planet.left,
+                top: planet.top,
+                width: 0,
+                height: 0,
+                pointerEvents: "none",
+                zIndex: isHovered ? 20 : 10,
+              }}
             >
-              {/* Planet image — static, massive */}
-              <img
-                src={planet.img}
-                alt={planet.name}
-                className="object-contain transition-all duration-300"
+              {/*
+               * ── LAYER 2: Transform layer (scale & centering ONLY) ──────────
+               * Handles translate(-50%,-50%) to centre the planet on Layer 1's
+               * anchor, plus the hover scale. NO clip-path here.
+               *
+               * Keeping clip-path and transform on separate elements eliminates
+               * a known browser bug where hit-test coordinates desync from the
+               * visual position when both are on the same element.
+               */}
+              {/*
+               * ── LAYER 2: Transform layer ────────────────────────────────
+               * Handles centering (translate -50%) and hover scale.
+               * Both the clip layer AND the label live here as siblings so
+               * the label is NEVER constrained by the circular clip mask.
+               */}
+              <div
                 style={{
                   width: planet.size,
                   height: planet.size,
-                  filter:
-                    hoveredIdx === i
-                      ? `drop-shadow(0 0 28px ${planet.glowColor}) drop-shadow(0 0 56px ${planet.glowColor})`
-                      : `drop-shadow(0 0 6px ${planet.glowColor})`,
-                  transform: hoveredIdx === i ? "scale(1.06)" : "scale(1)",
-                }}
-              />
-
-              {/* Giant name label — floats centered over the planet, z-[100] */}
-              <span
-                className="absolute inset-0 flex items-center justify-center z-[100] pointer-events-none transition-all duration-300"
-                style={{
-                  opacity: hoveredIdx === i ? 1 : 0,
-                  transform: hoveredIdx === i ? "scale(1)" : "scale(0.85)",
+                  position: "relative",
+                  pointerEvents: "none",
+                  transform: isHovered
+                    ? "translate(-50%, -50%) scale(1.06)"
+                    : "translate(-50%, -50%) scale(1)",
+                  transition: "transform 300ms ease",
                 }}
               >
-                <span
-                  className="text-7xl font-black uppercase tracking-wider whitespace-nowrap"
+                {/*
+                 * ── LAYER 3: Clipped interactive surface ─────────────────
+                 * clip-path here, NO transform — keeps hit-test coordinates
+                 * perfectly stable. Only the image lives inside the clip.
+                 */}
+                <div
+                  className="cursor-pointer select-none"
+                  onMouseEnter={() => setHoveredIdx(i)}
+                  onMouseLeave={() => setHoveredIdx(-1)}
+                  onClick={() => handleClick(planet.path)}
                   style={{
-                    color: planet.labelColor,
-                    textShadow: `
-                      0 0 12px ${planet.labelColor},
-                      0 0 30px ${planet.labelColor},
-                      0 2px 4px rgba(0,0,0,0.9)
-                    `,
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "50%",
+                    clipPath: `circle(${planet.clipRadius} at 50% 50%)`,
+                    pointerEvents: "auto",
+                    overflow: "hidden",
                   }}
                 >
-                  {planet.name}
+                  {/* Planet image */}
+                  <img
+                    src={planet.img}
+                    alt={planet.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                      filter: isHovered
+                        ? `drop-shadow(0 0 28px ${planet.glowColor}) drop-shadow(0 0 56px ${planet.glowColor})`
+                        : `drop-shadow(0 0 6px ${planet.glowColor})`,
+                      transition: "filter 300ms ease",
+                    }}
+                  />
+                </div>
+
+                {/*
+                 * ── Name label — sibling of Layer 3, inside Layer 2 ──────
+                 * Lives OUTSIDE the clip-path so no text is ever cropped.
+                 * inset:0 + flex + items-center + justify-center centres it
+                 * perfectly over the planet regardless of font size.
+                 * pointer-events:none keeps it invisible to the mouse.
+                 */}
+                {/*
+                 * Label outer span: inset-0 flex centres the block.
+                 * translate(labelOffset.x, labelOffset.y) nudges the
+                 * entire centred block without breaking the alignment.
+                 * The scale(0.85→1) entrance stays as a separate layer.
+                 */}
+                <span
+                  className="pointer-events-none"
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    zIndex: 100,
+                    opacity: isHovered ? 1 : 0,
+                    // Offset nudge + entrance scale in one compound transform
+                    transform: isHovered
+                      ? `translate(${planet.labelOffset.x}, ${planet.labelOffset.y}) scale(1)`
+                      : `translate(${planet.labelOffset.x}, ${planet.labelOffset.y}) scale(0.85)`,
+                    transition: "opacity 300ms ease, transform 300ms ease",
+                  }}
+                >
+                  <span
+                    className={`${planet.hoverTextClass} font-black uppercase tracking-wider whitespace-nowrap`}
+                    style={{
+                      color: "white",
+                      textShadow: `
+                        0 0 12px ${planet.labelColor},
+                        0 0 30px ${planet.labelColor},
+                        0 2px 4px rgba(0,0,0,0.9)
+                      `,
+                    }}
+                  >
+                    {planet.name}
+                  </span>
                 </span>
-              </span>
+              </div>
             </div>
-          ))}
-        </div>
+          );
+        })}
       </div>
     </div>
   );
