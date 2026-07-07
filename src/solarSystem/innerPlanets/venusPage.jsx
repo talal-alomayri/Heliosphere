@@ -17,42 +17,60 @@ export default function VenusPage() {
     );
     tl.fromTo(
       contentRef.current,
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: "back.out(1.7)" },
+      { opacity: 0, x: -50 },
+      { opacity: 1, x: 0, duration: 0.8, ease: "back.out(1.7)" },
       "-=0.3"
     );
   }, []);
 
   return (
-    <div ref={containerRef} className="min-h-screen relative py-12 px-4">
+    <div ref={containerRef} className="h-screen overflow-hidden relative bg-black">
       <Navbar />
+
+      {/* Background Image */}
+      <img
+        src={venusInfoImg}
+        alt="Venus Background"
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+      />
+
+      {/* Animated Star Field */}
       <StarsBackground />
-      <div className="relative z-10 max-w-4xl mx-auto pt-24">
-        <div ref={contentRef} className="pixel-border border-orange-400 bg-orange-950/80 p-8 glow-box">
-          <h1 className="text-4xl font-bold text-center mb-8 text-orange-400 neon-text">VENUS</h1>
-          <div className="flex flex-col md:flex-row gap-8 items-center">
-            <img 
-              src={venusInfoImg} 
-              alt="venus" 
-              className="w-full md:w-1/2 object-contain"
-            />
-            <div className="flex-1">
-              <p className="text-lg mb-4 text-orange-100">
-                Venus is the second planet from the Sun and is the hottest in our Solar System due to its thick, toxic atmosphere.
-              </p>
-              <div className="grid grid-cols-2 gap-4 mt-6">
-                <div className="p-4 bg-orange-900/50 pixel-border border-orange-500">
-                  <span className="text-orange-300 font-bold">Diameter:</span> 12,104 km
-                </div>
-                <div className="p-4 bg-orange-900/50 pixel-border border-orange-500">
-                  <span className="text-orange-300 font-bold">Distance from Sun:</span> 108.2 million km
-                </div>
-                <div className="p-4 bg-orange-900/50 pixel-border border-orange-500">
-                  <span className="text-orange-300 font-bold">Orbital Period:</span> 225 Earth days
-                </div>
-                <div className="p-4 bg-orange-900/50 pixel-border border-orange-500">
-                  <span className="text-orange-300 font-bold">Moons:</span> 0
-                </div>
+
+      {/* Content Container */}
+      <div className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 pt-20 pointer-events-none">
+        <div ref={contentRef} className="max-w-2xl pointer-events-auto">
+          {/* Title on the left */}
+          <h1 
+            className="text-6xl md:text-8xl font-bold text-left mb-6 text-orange-300"
+            style={{ textShadow: "0 0 8px #fdba74, 0 0 24px #f97316" }}
+          >
+            VENUS
+          </h1>
+
+          {/* Info text box below the title */}
+          <div>
+            <p className="text-lg mb-6 text-orange-100">
+              Venus is the second planet from the Sun and is the hottest in our Solar System due to its thick, toxic atmosphere.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="p-2">
+                <span className="text-orange-300 font-bold block mb-1">Diameter</span> 
+                <span className="text-white text-lg">12,104 km</span>
+              </div>
+              <div className="p-2">
+                <span className="text-orange-300 font-bold block mb-1">Distance from Sun</span> 
+                <span className="text-white text-lg">108.2 million km</span>
+              </div>
+              <div className="p-2">
+                <span className="text-orange-300 font-bold block mb-1">Orbital Period</span> 
+                <span className="text-white text-lg">225 Earth days</span>
+              </div>
+              <div className="p-2">
+                <span className="text-orange-300 font-bold block mb-1">Moons</span> 
+                <span className="text-white text-lg">0</span>
               </div>
             </div>
           </div>
