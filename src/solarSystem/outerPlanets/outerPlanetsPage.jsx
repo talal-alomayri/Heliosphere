@@ -31,7 +31,7 @@ const PLANETS = [
     left: "15%",
     top: "55%",
     clipRadius: "35%",
-    hoverTextClass: "text-6xl md:text-8xl",
+    hoverTextClass: "text-4xl md:text-7xl",
     labelOffset: { x: "0px", y: "0px" }, // ← nudge label position
   },
   {
@@ -44,7 +44,7 @@ const PLANETS = [
     left: "45%",
     top: "45%",
     clipRadius: "35%",
-    hoverTextClass: "text-6xl md:text-8xl",
+    hoverTextClass: "text-4xl md:text-6xl",
     labelOffset: { x: "0px", y: "-30px" }, // ← nudge label position (up a bit to avoid rings)
   },
   {
@@ -57,7 +57,7 @@ const PLANETS = [
     left: "75%",
     top: "65%",
     clipRadius: "35%",
-    hoverTextClass: "text-5xl md:text-7xl",
+    hoverTextClass: "text-4xl md:text-6xl",
     labelOffset: { x: "0px", y: "0px" }, // ← nudge label position
   },
   {
@@ -67,10 +67,10 @@ const PLANETS = [
     labelColor: "#60a5fa", // blue-400
     glowColor: "rgba(96, 165, 250, 0.7)",
     size: "550px",
-    left: "92%",
+    left: "90%",
     top: "35%",
     clipRadius: "35%",
-    hoverTextClass: "text-5xl md:text-7xl",
+    hoverTextClass: "text-4xl md:text-5xl",
     labelOffset: { x: "0px", y: "0px" }, // ← nudge label position
   },
 ];
@@ -102,7 +102,7 @@ export default function OuterPlanetsPage() {
       ref={containerRef}
       className="h-screen overflow-hidden relative bg-black"
     >
-      <Navbar />
+     
 
       {/* Background image — sits below the stars layer */}
       <img

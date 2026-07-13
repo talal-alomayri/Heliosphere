@@ -28,10 +28,10 @@ const PLANETS = [
     labelColor: "#d6d3d1",
     glowColor: "rgba(168,162,158,0.7)",
     size: "350px",
-    left: "11%",
+    left: "14%",
     top: "75%",
     clipRadius: "40%",
-    hoverTextClass: "text-5xl md:text-7xl",
+    hoverTextClass: "text-4xl md:text-6xl",
     labelOffset: { x: "0px", y: "0px" }, // ← nudge label position
   },
   {
@@ -44,7 +44,7 @@ const PLANETS = [
     left: "32%",
     top: "45%",
     clipRadius: "25%",
-    hoverTextClass: "text-6xl md:text-8xl",
+    hoverTextClass: "text-5xl md:text-7xl",
     labelOffset: { x: "2px", y: "0px" }, // ← nudge label position
   },
   {
@@ -57,7 +57,7 @@ const PLANETS = [
     left: "60%",
     top: "68%",
     clipRadius: "30%",
-    hoverTextClass: "text-6xl md:text-8xl",
+    hoverTextClass: "text-5xl md:text-7xl",
     labelOffset: { x: "50px", y: "0px" }, // ← nudge label position
   },
   {
@@ -67,10 +67,10 @@ const PLANETS = [
     labelColor: "#fca5a5",
     glowColor: "rgba(239,68,68,0.7)",
     size: "600px",
-    left: "91%",
+    left: "88%",
     top: "50%",
     clipRadius: "25%",
-    hoverTextClass: "text-6xl md:text-8xl",
+    hoverTextClass: "text-5xl md:text-7xl",
     labelOffset: { x: "10px", y: "0px" }, // ← nudge label position
   },
 ];

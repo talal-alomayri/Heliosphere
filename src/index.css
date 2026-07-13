@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/* ── GeistPixel custom font ─────────────────────────────────────────────── */
+@font-face {
+  font-family: 'GeistPixel';
+  src: url('./assets/font/GeistPixel-Regular-VariableFont_ELSH.ttf') format('truetype');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -7,11 +16,11 @@ html {
 * {
   box-sizing: border-box;
   image-rendering: pixelated;
-  font-family: 'Jersey 10', monospace;
+  font-family: 'GeistPixel', monospace;
 }
 
 body {
-  font-family: 'Jersey 10', monospace;
+  font-family: 'GeistPixel', monospace;
   background: black;
   color: #fff;
   overflow-x: hidden;

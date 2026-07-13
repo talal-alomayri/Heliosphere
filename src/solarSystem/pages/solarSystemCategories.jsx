@@ -2,9 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Navbar from '../../components/Navbar';
 import StarsBackground from '../../components/StarsBackground';
-import backgroundImg from '../../assets/images/Background.png';
+import innerPlanetsBg from '../../assets/images/inner-planets-background-pixel.png';
 import sunImg from '../../assets/images/sun-pixel.png';
 import innerPlanetsImg from '../../assets/images/inner-planets-pixel.png';
 import asteroidBeltImg from '../../assets/images/asteroid-belt-background-pixel.png';
@@ -196,16 +195,16 @@ export default function SolarSystemCategories() {
       ref={containerRef}
       className="min-h-screen relative overflow-x-hidden"
       style={{
-        backgroundImage: `url(${backgroundImg})`,
+        backgroundImage: `url(${innerPlanetsBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
       }}
     >
-      <Navbar />
-
-      {/* Animated star field layered on top of the background image */}
       <StarsBackground />
+
+      {/* Dark overlay to deepen the background */}
+      <div className="fixed inset-0 bg-black/60 pointer-events-none z-[1]" />
 
       {/* ── Page header ─────────────────────────────────────────────────────── */}
       <div className="relative z-10 min-h-screen flex items-center justify-center">

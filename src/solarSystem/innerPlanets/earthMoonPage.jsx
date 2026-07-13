@@ -5,6 +5,7 @@ import Navbar from "../../components/Navbar";
 import StarsBackground from "../../components/StarsBackground";
 import earthAloneImg from "../../assets/images/planet-earth-alone-pixel.png";
 import moonImg from "../../assets/images/moon-pixel.png";
+import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.png";
 
 // ─── PLANET CONFIGURATION ────────────────────────────────────────────────────
 // size          → diameter of the planet image in px
@@ -28,7 +29,7 @@ const CELESTIAL_BODIES = [
     left: "35%",
     top: "55%",
     clipRadius: "30%",
-    hoverTextClass: "text-6xl md:text-8xl",
+    hoverTextClass: "text-5xl md:text-7xl",
     labelOffset: { x: "50px", y: "0px" },
   },
   {
@@ -41,8 +42,8 @@ const CELESTIAL_BODIES = [
     left: "60%",
     top: "40%",
     clipRadius: "35%",
-    hoverTextClass: "text-5xl md:text-7xl",
-    labelOffset: { x: "-7px", y: "0px" },
+    hoverTextClass: "text-4xl md:text-5xl",
+    labelOffset: { x: "-15px", y: "0px" },
   },
 ];
 
@@ -71,12 +72,20 @@ export default function EarthMoonPage() {
   return (
     <div
       ref={containerRef}
-      className="h-screen overflow-hidden relative bg-black"
+      className="h-screen overflow-hidden relative"
+      style={{
+        backgroundImage: `url(${innerPlanetsBg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
-      <Navbar />
+      
 
       {/* Animated star field */}
       <StarsBackground />
+
+      {/* Dark overlay to deepen the background */}
+      <div className="absolute inset-0 bg-black/60 pointer-events-none z-[1]" />
 
       {/* Page title */}
       <div className="absolute top-0 left-0 right-0 z-20 flex justify-center pt-20 pointer-events-none">

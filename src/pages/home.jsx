@@ -2,12 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navbar from "../components/Navbar";
 import StarsBackground from "../components/StarsBackground";
 import SolarSystemCard from "../component/solarSystemCard";
 import BlackHoleCard from "../blackHole/blackHoleCard";
 import SupernovaCard from "../supernove/supernoveCard";
-import backgroundImg from "../assets/images/Background.png";
+import innerPlanetsBg from "../assets/images/inner-planets-background-pixel.png";
+import GetApiTest from "../components/GetApiTest";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,16 +15,15 @@ export default function Home() {
   const navigate = useNavigate();
 
   // ─── Refs for hero entrance animations ────────────────────────────────────
-  const containerRef   = useRef(null);
-  const titleRef       = useRef(null);
-  const buttonRef      = useRef(null);
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
+  const buttonRef = useRef(null);
   const descriptionRef = useRef(null);
 
   // ─── Refs for card scroll-trigger animations ───────────────────────────────
   const solarSystemRefs = useRef({ image: null, content: null });
-  const blackHoleRefs   = useRef({ image: null, content: null });
-  const supernovaRefs   = useRef({ image: null, content: null });
-
+  const blackHoleRefs = useRef({ image: null, content: null });
+  const supernovaRefs = useRef({ image: null, content: null });
 
   // ─── Smooth-scroll helper ─────────────────────────────────────────────────
   const scrollToSection = (id) => {
@@ -39,21 +38,28 @@ export default function Home() {
       gsap.fromTo(
         titleRef.current,
         { y: 40, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" },
       );
 
       // Description: fades in after title
       gsap.fromTo(
         descriptionRef.current,
         { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.35 }
+        { y: 0, opacity: 1, duration: 1.2, ease: "power3.out", delay: 0.35 },
       );
 
       // Explore button: springy entrance
       gsap.fromTo(
         buttonRef.current,
         { y: 20, opacity: 0, scale: 0.85 },
-        { y: 0, opacity: 1, scale: 1, duration: 1, ease: "back.out(1.3)", delay: 0.65 }
+        {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          duration: 1,
+          ease: "back.out(1.3)",
+          delay: 0.65,
+        },
       );
     }, containerRef);
 
@@ -69,27 +75,33 @@ export default function Home() {
           solarSystemRefs.current.image,
           { x: "100%", opacity: 0 },
           {
-            x: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: solarSystemRefs.current.image,
               start: "top 80%",
               end: "top 40%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
         gsap.fromTo(
           solarSystemRefs.current.content,
           { x: "-100%", opacity: 0 },
           {
-            x: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: solarSystemRefs.current.content,
               start: "top 80%",
               end: "top 40%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
 
@@ -99,27 +111,33 @@ export default function Home() {
           blackHoleRefs.current.image,
           { x: "-100%", opacity: 0 },
           {
-            x: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: blackHoleRefs.current.image,
               start: "top 80%",
               end: "top 40%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
         gsap.fromTo(
           blackHoleRefs.current.content,
           { x: "100%", opacity: 0 },
           {
-            x: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: blackHoleRefs.current.content,
               start: "top 80%",
               end: "top 40%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
 
@@ -129,27 +147,33 @@ export default function Home() {
           supernovaRefs.current.image,
           { x: "100%", opacity: 0 },
           {
-            x: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: supernovaRefs.current.image,
               start: "top 80%",
               end: "top 40%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
         gsap.fromTo(
           supernovaRefs.current.content,
           { x: "-100%", opacity: 0 },
           {
-            x: 0, opacity: 1, duration: 1.2, ease: "power3.out",
+            x: 0,
+            opacity: 1,
+            duration: 1.2,
+            ease: "power3.out",
             scrollTrigger: {
               trigger: supernovaRefs.current.content,
               start: "top 80%",
               end: "top 40%",
               toggleActions: "play none none reverse",
             },
-          }
+          },
         );
       }
     }, containerRef);
@@ -195,15 +219,17 @@ export default function Home() {
         ref={containerRef}
         className="relative overflow-x-hidden"
         style={{
-          backgroundImage: `url(${backgroundImg})`,
+          backgroundImage: `url(${innerPlanetsBg})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: "fixed",
         }}
       >
         {/* Fixed overlays */}
-        <Navbar onNavClick={scrollToSection} />
         <StarsBackground />
+
+        {/* Dark overlay to deepen the background */}
+        <div className="fixed inset-0 bg-black/20 pointer-events-none z-[1]" />
 
         {/* ── HERO SECTION ───────────────────────────────────────────────── */}
         <section
@@ -263,9 +289,21 @@ export default function Home() {
 
             {/* Scroll hint */}
             <div className="mt-8 flex flex-col items-center gap-1 opacity-50 animate-bounce">
-              <span className="text-white text-xs tracking-widest uppercase">Scroll</span>
-              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+              <span className="text-white text-xs tracking-widest uppercase">
+                Scroll
+              </span>
+              <svg
+                className="w-4 h-4 text-white"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
               </svg>
             </div>
           </div>
@@ -273,7 +311,6 @@ export default function Home() {
 
         {/* ── CATEGORIES SECTION ─────────────────────────────────────────── */}
         <div className="relative z-10 flex flex-col">
-
           {/* Solar System */}
           <section id="solar-system" className="w-full">
             <div
@@ -312,9 +349,12 @@ export default function Home() {
               />
             </div>
           </section>
+
+          <div className="bg-black">
+            <GetApiTest />
+          </div>
         </div>
       </div>
-
     </>
   );
 }
