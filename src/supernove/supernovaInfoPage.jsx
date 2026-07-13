@@ -59,7 +59,7 @@ export default function SupernovaInfoPage() {
   ];
 
   return (
-    <div ref={containerRef} className="h-screen overflow-hidden relative">
+    <div ref={containerRef} className="min-h-screen relative bg-black">
       <StarsBackground />
 
       {/* ── BACKGROUND IMAGE — full page cover */}
@@ -67,17 +67,17 @@ export default function SupernovaInfoPage() {
         src={supernovaImg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+        className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
 
       {/* ── Dark gradient overlay on the left for text readability */}
       <div
-        className="absolute inset-0 z-[1] pointer-events-none"
+        className="fixed inset-0 z-[1] pointer-events-none"
         style={{ background: 'linear-gradient(to right, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 50%, transparent 80%)' }}
       />
 
       {/* ── LEFT-SIDE CONTENT PANEL */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-20 pt-20 pointer-events-none">
+      <div className="relative w-full min-h-screen z-10 flex flex-col justify-center items-start px-8 md:px-20 pt-28 pb-12 pointer-events-none">
         <div className="w-full max-w-xl pointer-events-auto text-left">
 
           {/* Title */}

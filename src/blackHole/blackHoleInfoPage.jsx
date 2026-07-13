@@ -61,7 +61,7 @@ export default function BlackHoleInfoPage() {
   return (
     <div
       ref={containerRef}
-      className="h-screen overflow-hidden relative bg-black"
+      className="min-h-screen relative bg-black"
     >
       <StarsBackground />
 
@@ -70,7 +70,7 @@ export default function BlackHoleInfoPage() {
         src={blackHoleImg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+        className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
         style={{
           maskImage: 'linear-gradient(to right, black 40%, transparent 75%)',
           WebkitMaskImage: 'linear-gradient(to right, black 40%, transparent 75%)',
@@ -78,7 +78,7 @@ export default function BlackHoleInfoPage() {
       />
 
       {/* ── RIGHT-SIDE CONTENT PANEL */}
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-end px-8 md:px-20 pt-20 pointer-events-none">
+      <div className="relative w-full min-h-screen z-10 flex flex-col justify-center items-end px-8 md:px-20 pt-28 pb-12 pointer-events-none">
         <div className="w-full max-w-xl pointer-events-auto text-right">
 
           {/* Title */}
