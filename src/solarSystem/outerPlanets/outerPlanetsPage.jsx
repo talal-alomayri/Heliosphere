@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Navbar from "../../components/Navbar";
 import StarsBackground from "../../components/StarsBackground";
 import jupiterImg from "../../assets/images/planet-jupiter-alone-pixel.png";
 import saturnImg from "../../assets/images/planet-saturn-alone-pixel.png";

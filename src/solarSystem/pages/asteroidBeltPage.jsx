@@ -1,6 +1,5 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-import Navbar from '../../components/Navbar';
 import StarsBackground from '../../components/StarsBackground';
 import asteroidBg from '../../assets/images/asteroid-belt-pixel.png';
 import { useAsteroidBelt } from '../../hooks/useSpaceData';

@@ -22,6 +22,7 @@ import SupernovaInfoPage from "./supernove/supernovaInfoPage";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import SpaceDashboard from './components/SpaceDashboard';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
@@ -29,32 +30,37 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route
-            path="/SolarSystemCategories"
-            element={<SolarSystemCategories />}
-          />
-          <Route path="/solarSystem/sunPage" element={<SunPage />} />
-          <Route path="/solarSystem/asteroidBeltPage" element={<AsteroidBeltPage />} />
-          <Route path="/solarSystem/innerPlanetsPage" element={<InnerPlanetsPage />} />
-          <Route path="/solarSystem/innerPlanetsPage/mercury" element={<MercuryPage />} />
-          <Route path="/solarSystem/innerPlanetsPage/venus" element={<VenusPage />} />
-          <Route path="/solarSystem/innerPlanetsPage/earth" element={<EarthPage />} />
-          <Route path="/solarSystem/innerPlanetsPage/mars" element={<MarsPage />} />
-          <Route path="/solarSystem/innerPlanetsPage/moon" element={<MoonPage />} />
-          <Route path="/solarSystem/innerPlanetsPage/earthMoon" element={<EarthMoonPage />} />
-          <Route path="/solarSystem/outerPlanetsPage/jupiter" element={<JupiterPage />} />
-          <Route path="/solarSystem/outerPlanetsPage/saturn" element={<SaturnPage />} />
-          <Route path="/solarSystem/outerPlanetsPage/uranus" element={<UranusPage />} />
-          <Route path="/solarSystem/outerPlanetsPage/neptune" element={<NeptunePage />} />
-          <Route path="/solarSystem/outerPlanetsPage" element={<OuterPlanetsPage />} />
-          <Route path="/blackHoleInfoPage" element={<BlackHoleInfoPage />} />
-          <Route path="/supernovaInfoPage" element={<SupernovaInfoPage />} />
-          <Route path="/dashboard" element={<SpaceDashboard />} />
-        </Routes>
+        <div className="flex flex-col min-h-screen">
+          <Navbar />
+          <div className="flex-grow">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/categories" element={<Categories />} />
+              <Route
+                path="/SolarSystemCategories"
+                element={<SolarSystemCategories />}
+              />
+              <Route path="/solarSystem/sunPage" element={<SunPage />} />
+              <Route path="/solarSystem/asteroidBeltPage" element={<AsteroidBeltPage />} />
+              <Route path="/solarSystem/innerPlanetsPage" element={<InnerPlanetsPage />} />
+              <Route path="/solarSystem/innerPlanetsPage/mercury" element={<MercuryPage />} />
+              <Route path="/solarSystem/innerPlanetsPage/venus" element={<VenusPage />} />
+              <Route path="/solarSystem/innerPlanetsPage/earth" element={<EarthPage />} />
+              <Route path="/solarSystem/innerPlanetsPage/mars" element={<MarsPage />} />
+              <Route path="/solarSystem/innerPlanetsPage/moon" element={<MoonPage />} />
+              <Route path="/solarSystem/innerPlanetsPage/earthMoon" element={<EarthMoonPage />} />
+              <Route path="/solarSystem/outerPlanetsPage/jupiter" element={<JupiterPage />} />
+              <Route path="/solarSystem/outerPlanetsPage/saturn" element={<SaturnPage />} />
+              <Route path="/solarSystem/outerPlanetsPage/uranus" element={<UranusPage />} />
+              <Route path="/solarSystem/outerPlanetsPage/neptune" element={<NeptunePage />} />
+              <Route path="/solarSystem/outerPlanetsPage" element={<OuterPlanetsPage />} />
+              <Route path="/blackHoleInfoPage" element={<BlackHoleInfoPage />} />
+              <Route path="/supernovaInfoPage" element={<SupernovaInfoPage />} />
+              <Route path="/dashboard" element={<SpaceDashboard />} />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} position="bottom"/>
     </QueryClientProvider>

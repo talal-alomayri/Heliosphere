@@ -31,7 +31,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-transparent">
+    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
 
       {/* ── Faint baseline ── */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-white/20 z-0" />
