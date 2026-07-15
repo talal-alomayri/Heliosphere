@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
 import bgImg from '../../assets/images/planet-jupiter-pixel.png';
+import iconImg from '../../assets/images/planet-jupiter-alone-pixel.png';
 import { useJupiter } from '../../hooks/useSpaceData';
 
 export default function JupiterPage() {
@@ -15,7 +16,6 @@ export default function JupiterPage() {
     tl.fromTo(contentRef.current, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.8, ease: 'back.out(1.7)' }, '-=0.3');
   }, []);
 
-  const loading = isPending ? '…' : 'N/A';
   const buildStats = (d) => [
     { label: 'Diameter', value: d?.meanRadius ? d.meanRadius * 2 + ' km' : 'N/A' },
     { label: 'Distance from Sun', value: d?.semimajorAxis ? Number(d.semimajorAxis).toLocaleString() + ' km' : 'N/A' },
@@ -30,6 +30,7 @@ export default function JupiterPage() {
 
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 pt-20 pointer-events-none">
         <div ref={contentRef} className="max-w-2xl pointer-events-auto">
+          <img src={iconImg} alt="Jupiter" className="w-100 h-100 mb-4 md:hidden drop-shadow-[0_0_12px_rgba(251,191,36,0.5)] object-contain" />
           <h1 className="text-6xl md:text-8xl font-bold text-left mb-6 text-amber-300" style={{ textShadow: '0 0 8px #fcd34d, 0 0 24px #fbbf24' }}>
             JUPITER
           </h1>

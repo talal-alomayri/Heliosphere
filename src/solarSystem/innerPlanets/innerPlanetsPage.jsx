@@ -100,7 +100,7 @@ export default function InnerPlanetsPage() {
   return (
     <div
       ref={containerRef}
-      className="h-screen overflow-hidden relative bg-black"
+      className="h-screen overflow-y-auto md:overflow-hidden relative bg-black"
     >
       <Navbar />
 
@@ -109,24 +109,104 @@ export default function InnerPlanetsPage() {
         src={innerPlanetsBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none"
+        className="fixed inset-0 w-full h-full object-cover z-0 pointer-events-none"
       />
 
       {/* Animated star field on top of the background image */}
       <StarsBackground />
 
       {/* Page title */}
-      <div className="absolute top-0 left-0 right-0 z-20 flex justify-center pt-20  pointer-events-none">
+      <div className="relative md:absolute top-0 left-0 right-0 z-20 flex justify-center pt-12 md:pt-20 pb-8 md:pb-0 pointer-events-none">
         <h1
-          className="text-6xl md:text-8xl font-bold text-white"
+          className="text-5xl md:text-8xl font-bold text-white text-center"
           style={{ textShadow: "0 0 8px #22d3ee, 0 0 24px #0891b2" }}
         >
           INNER PLANETS
         </h1>
       </div>
 
-      {/* Full-viewport arena */}
-      <div className="absolute inset-0 z-10">
+      {/* ── MOBILE VIEW: Vertical Flex Column ── */}
+      <div className="md:hidden relative z-10 flex flex-col items-center gap-16 pb-32">
+        {PLANETS.map((planet, i) => {
+          const isHovered = hoveredIdx === i;
+          // Scale down the size slightly for mobile to fit better
+          const mobileSize = parseInt(planet.size) * 0.7 + 'px';
+          
+          return (
+            <div
+              key={planet.name}
+              className="relative flex flex-col items-center w-full"
+              style={{ zIndex: isHovered ? 20 : 10 }}
+            >
+              <div
+                style={{
+                  width: mobileSize,
+                  height: mobileSize,
+                  position: "relative",
+                  transform: isHovered ? "scale(1.06)" : "scale(1)",
+                  transition: "transform 300ms ease",
+                }}
+              >
+                <div
+                  className="cursor-pointer select-none"
+                  onMouseEnter={() => setHoveredIdx(i)}
+                  onMouseLeave={() => setHoveredIdx(-1)}
+                  onClick={() => handleClick(planet.path)}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: "50%",
+                    clipPath: `circle(${planet.clipRadius} at 50% 50%)`,
+                    overflow: "hidden",
+                  }}
+                >
+                  <img
+                    src={planet.img}
+                    alt={planet.name}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "contain",
+                      display: "block",
+                      filter: isHovered
+                        ? `drop-shadow(0 0 28px ${planet.glowColor}) drop-shadow(0 0 56px ${planet.glowColor})`
+                        : `drop-shadow(0 0 6px ${planet.glowColor})`,
+                      transition: "filter 300ms ease",
+                    }}
+                  />
+                </div>
+
+                {/* Mobile Label */}
+                <span
+                  className="pointer-events-none absolute inset-0 flex items-center justify-center z-[100]"
+                  style={{
+                    opacity: isHovered ? 1 : 0,
+                    transform: isHovered ? "scale(1)" : "scale(0.85)",
+                    transition: "opacity 300ms ease, transform 300ms ease",
+                  }}
+                >
+                  <span
+                    className="text-4xl font-black uppercase tracking-wider whitespace-nowrap"
+                    style={{
+                      color: "white",
+                      textShadow: `
+                        0 0 12px ${planet.labelColor},
+                        0 0 30px ${planet.labelColor},
+                        0 2px 4px rgba(0,0,0,0.9)
+                      `,
+                    }}
+                  >
+                    {planet.name}
+                  </span>
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* ── DESKTOP VIEW: Absolute Orbital Positioning ── */}
+      <div className="hidden md:block absolute inset-0 z-10 min-w-[1200px] md:min-w-full">
         {PLANETS.map((planet, i) => {
           const isHovered = hoveredIdx === i;
 

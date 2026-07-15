@@ -249,7 +249,7 @@ export default function Home() {
             {/* Title */}
             <h1
               ref={titleRef}
-              className="text-7xl md:text-9xl font-bold text-white"
+              className="text-5xl md:text-9xl font-bold text-white"
               style={{
                 textShadow:
                   "0 0 10px #22d3ee, 0 0 30px #22d3ee, 0 0 60px #06b6d4",
