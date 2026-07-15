@@ -6,12 +6,12 @@ export default function SolarSystemCard({ imageRef, contentRef }) {
 
   return (
     <div 
-      className="relative w-full h-96 overflow-hidden cursor-pointer group"
+      className="relative w-full min-h-[400px] md:h-96 flex flex-col md:block overflow-hidden cursor-pointer group bg-black/40 md:bg-transparent"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Image on Right, Fades to Left */}
-      <div ref={imageRef} className="absolute right-0 top-0 w-1/2 h-full">
+      <div ref={imageRef} className="relative md:absolute md:right-0 md:top-0 w-full h-64 md:h-full md:w-1/2 order-1 md:order-none">
         <img 
           src={solarSystemImg} 
           alt="solar-system" 
@@ -26,7 +26,7 @@ export default function SolarSystemCard({ imageRef, contentRef }) {
       {/* Left-Aligned Content */}
       <div 
         ref={contentRef}
-        className="absolute left-0 top-0 w-1/2 h-full flex flex-col justify-center px-8"
+        className="relative md:absolute md:left-0 md:top-0 w-full md:w-1/2 h-auto md:h-full flex flex-col justify-center px-6 py-8 md:px-8 order-2 md:order-none"
       >
         <h2 
           className="text-4xl md:text-7xl font-bold text-white mb-4 transition-all duration-500 ease-out"
