@@ -1,5 +1,5 @@
 import { useState } from "react";
-import blackHoleImg from "../assets/images/black-hole-pixel.png";
+import blackHoleImg from "../assets/images/black-hole-pixel.webp";
 
 export default function BlackHoleCard({ imageRef, contentRef }) {
   const [isHovered, setIsHovered] = useState(false);

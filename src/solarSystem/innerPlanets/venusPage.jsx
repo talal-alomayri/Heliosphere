@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import bgImg from '../../assets/images/planet-venus-info-pixel.png';
-import iconImg from '../../assets/images/planet-venus-alone-pixel.png';
+import bgImg from '../../assets/images/planet-venus-info-pixel.webp';
+import iconImg from '../../assets/images/planet-venus-alone-pixel.webp';
 import { useVenus } from '../../hooks/useSpaceData';
 
 export default function VenusPage() {

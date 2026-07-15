@@ -2,9 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import StarsBackground from "../../components/StarsBackground";
-import earthAloneImg from "../../assets/images/planet-earth-alone-pixel.png";
-import moonImg from "../../assets/images/moon-pixel.png";
-import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.png";
+import earthAloneImg from "../../assets/images/planet-earth-alone-pixel.webp";
+import moonImg from "../../assets/images/moon-pixel.webp";
+import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.webp";
 
 // ─── PLANET CONFIGURATION ────────────────────────────────────────────────────
 // size          → diameter of the planet image in px

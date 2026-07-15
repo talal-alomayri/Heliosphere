@@ -1,14 +1,12 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import Navbar from '../../components/Navbar';
 import StarsBackground from '../../components/StarsBackground';
 import sunInfoImg from '../../assets/images/sun-info-pixel.png';
-import iconImg from '../../assets/images/sun-without-bg.png';
 import { useSun } from '../../hooks/useSpaceData';
 
 export default function SunPage() {
   const containerRef = useRef(null);
-  const contentRef = useRef(null);
+  const contentRef   = useRef(null);
   const { data, isPending, isError } = useSun();
 
   useEffect(() => {
@@ -23,12 +21,12 @@ export default function SunPage() {
   const rotation = data?.sideralRotation ? `${data.sideralRotation} h` : 'N/A';
 
   const stats = [
-    { label: 'Type', value: data?.bodyType ?? (isError ? 'Unavailable' : '…') },
+    { label: 'Type',        value: data?.bodyType           ?? (isError ? 'Unavailable' : '…') },
     { label: 'Mean Radius', value: isPending ? '…' : radius },
-    { label: 'Mass', value: isPending ? '…' : mass },
-    { label: 'Avg Temp', value: isPending ? '…' : temp },
-    { label: 'Rotation', value: isPending ? '…' : rotation },
-    { label: 'Gravity', value: isPending ? '…' : data?.gravity ? `${data.gravity} m/s²` : 'N/A' },
+    { label: 'Mass',        value: isPending ? '…' : mass   },
+    { label: 'Avg Temp',    value: isPending ? '…' : temp   },
+    { label: 'Rotation',    value: isPending ? '…' : rotation },
+    { label: 'Gravity',     value: isPending ? '…' : data?.gravity ? `${data.gravity} m/s²` : 'N/A' },
   ];
 
   return (
@@ -49,12 +47,11 @@ export default function SunPage() {
             'linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.60) 42%, rgba(0,0,0,0.10) 72%, transparent 100%)',
         }}
       />
-      <Navbar />
+      
       <StarsBackground />
 
       <div className="relative z-10 h-full flex items-center" style={{ paddingTop: '64px' }}>
         <div ref={contentRef} className="w-full max-w-md px-8 md:px-12 flex flex-col gap-3">
-          <img src={iconImg} alt="The Sun" className="w-32 h-32 mb-2 md:hidden drop-shadow-[0_0_12px_rgba(251,191,36,0.5)] object-contain" />
           <h1
             className="text-4xl md:text-5xl font-bold text-yellow-400 leading-tight"
             style={{ textShadow: '0 0 8px #fbbf24, 0 0 24px #f59e0b' }}

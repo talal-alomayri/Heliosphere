@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../components/StarsBackground';
-import blackHoleImg from "../assets/images/black-hole-pixel.png";
+import blackHoleImg from "../assets/images/black-hole-pixel.webp";
 import { useBlackHole } from '../hooks/useSpaceData';
 
 // ─── SKELETON LOADER ─────────────────────────────────────────────────────────

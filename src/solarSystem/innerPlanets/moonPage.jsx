@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import bgImg from '../../assets/images/moon-info-pixel.png';
-import iconImg from '../../assets/images/moon-without-bg.png';
+import bgImg from '../../assets/images/moon-info-pixel.webp';
+import iconImg from '../../assets/images/moon-without-bg.webp';
 import { useMoon } from '../../hooks/useSpaceData';
 
 export default function MoonPage() {

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import bgImg from '../../assets/images/planet-jupiter-pixel.png';
-import iconImg from '../../assets/images/planet-jupiter-alone-pixel.png';
+import bgImg from '../../assets/images/planet-jupiter-pixel.webp';
+import iconImg from '../../assets/images/planet-jupiter-alone-pixel.webp';
 import { useJupiter } from '../../hooks/useSpaceData';
 
 export default function JupiterPage() {

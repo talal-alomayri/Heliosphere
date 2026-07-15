@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../components/StarsBackground';
-import supernovaImg from "../assets/images/super-nove-pixel.png";
+import supernovaImg from "../assets/images/super-nove-pixel.webp";
 import { useSupernova } from '../hooks/useSpaceData';
 
 // ─── SKELETON LOADER ─────────────────────────────────────────────────────────

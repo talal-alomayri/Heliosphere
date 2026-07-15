@@ -1,5 +1,5 @@
 import { useState } from "react";
-import supernovaImg from "../assets/images/super-nove-pixel.png";
+import supernovaImg from "../assets/images/super-nove-pixel.webp";
 
 export default function SupernovaCard({ imageRef, contentRef }) {
   const [isHovered, setIsHovered] = useState(false);

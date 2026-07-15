@@ -6,7 +6,7 @@ import StarsBackground from "../components/StarsBackground";
 import SolarSystemCard from "../component/solarSystemCard";
 import BlackHoleCard from "../blackHole/blackHoleCard";
 import SupernovaCard from "../supernove/supernoveCard";
-import innerPlanetsBg from "../assets/images/inner-planets-background-pixel.png";
+import innerPlanetsBg from "../assets/images/inner-planets-background-pixel.webp";
 import GetApiTest from "../components/GetApiTest";
 
 gsap.registerPlugin(ScrollTrigger);
