@@ -1,4 +1,6 @@
+import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import SuggestionsForm from "./SuggestionsForm";
 
 /**
  * Global Navbar — rendered once in App.jsx, visible on every page.
@@ -13,6 +15,7 @@ export default function Navbar() {
   const navigate  = useNavigate();
   const { pathname } = useLocation();
   const isHome = pathname === "/";
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const navButtons = [
     { label: "Solar System", id: "solar-system", route: "/SolarSystemCategories" },
@@ -31,7 +34,8 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
+    <>
+      <nav className="absolute top-0 left-0 right-0 z-50 bg-transparent">
 
       {/* ── Faint baseline ── */}
       <div className="absolute bottom-0 left-0 right-0 h-px bg-white/20 z-0" />
@@ -67,9 +71,26 @@ export default function Navbar() {
               {btn.label}
             </button>
           ))}
+          <button
+            onClick={() => setShowSuggestions(true)}
+            className="relative z-10
+                       px-4 py-1.5 text-lg md:text-2xl text-white
+                       transition-all duration-300 hover:scale-105
+                       border-b border-transparent hover:border-white
+                       pb-[1px] -mb-[1px]"
+            style={{ textShadow: "0 0 4px #fbbf24" }}
+          >
+            Suggestions
+          </button>
         </div>
 
       </div>
     </nav>
+    {showSuggestions && (
+      <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+        <SuggestionsForm onClose={() => setShowSuggestions(false)} />
+      </div>
+    )}
+    </>
   );
 }

@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import StarsBackground from './StarsBackground';
 
-// Web3Forms Access Key - Replace with your actual key if needed
-const WEB3FORMS_ACCESS_KEY = "dbbbf7da-8cb4-4328-a3ad-2db876738fcd";
+// Web3Forms Access Key - securely loaded from environment variables
+const WEB3FORMS_ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
 
-function SuggestionsForm() {
+export default function SuggestionsForm({ onClose }) {
   const [status, setStatus] = useState("idle"); // idle, loading, success, error
   const [formData, setFormData] = useState({
     name: "",
@@ -52,7 +51,18 @@ function SuggestionsForm() {
   };
 
   return (
-    <div className="w-full max-w-md bg-white/5 border border-white/10 p-6 rounded-2xl shadow-lg backdrop-blur-sm">
+    <div className="w-full max-w-md bg-black/80 border border-white/20 p-6 rounded-2xl shadow-2xl backdrop-blur-md relative">
+      {onClose && (
+        <button 
+          onClick={onClose} 
+          className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+          aria-label="Close"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      )}
       <h3 className="text-2xl font-bold text-white mb-4" style={{ textShadow: "0 0 4px #fbbf24" }}>Share your suggestions</h3>
 
       {status === "success" && (
@@ -119,24 +129,5 @@ function SuggestionsForm() {
         </button>
       </form>
     </div>
-  );
-}
-
-export default function Footer() {
-  return (
-    <footer className="relative z-20 bg-black text-white py-12 px-6 mt-auto font-inherit flex flex-col justify-center">
-      <StarsBackground/>
-      <div className="w-full mx-auto flex flex-col items-center gap-12">
-        {/* Centered Suggestions Form */}
-        <div className="w-full flex justify-center">
-          <SuggestionsForm />
-        </div>
-      </div>
-
-      {/* Copyrights */}
-      <div className="max-w-7xl mx-auto mt-12 pt-6 text-center text-gray-500 text-sm">
-        <p>&copy; {new Date().getFullYear()} Heliosphere. All rights reserved.</p>
-      </div>
-    </footer>
   );
 }

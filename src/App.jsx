@@ -22,7 +22,6 @@ import SupernovaInfoPage from "./supernove/supernovaInfoPage";
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import SpaceDashboard from './components/SpaceDashboard';
 import Navbar from './components/Navbar';
-import Footer from './components/Footer';
 
 const queryClient = new QueryClient();
 
@@ -59,7 +58,6 @@ function App() {
               <Route path="/dashboard" element={<SpaceDashboard />} />
             </Routes>
           </div>
-          <Footer />
         </div>
       </Router>
       <ReactQueryDevtools initialIsOpen={false} position="bottom"/>
