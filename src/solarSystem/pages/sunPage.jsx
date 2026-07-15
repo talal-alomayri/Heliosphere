@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import sunInfoImg from '../../assets/images/sun-info-pixel.png';
+import sunInfoImg from '../../assets/images/sun-info-pixel.webp';
 import { useSun } from '../../hooks/useSpaceData';
 
 export default function SunPage() {
