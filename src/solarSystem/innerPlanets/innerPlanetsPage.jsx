@@ -3,11 +3,11 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Navbar from "../../components/Navbar";
 import StarsBackground from "../../components/StarsBackground";
-import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.png";
-import mercuryImg from "../../assets/images/planet-mercury-alone-pixel.png";
-import venusImg from "../../assets/images/planet-venus-alone-pixel.png";
-import earthImg from "../../assets/images/planet-earth-alone-pixel.png";
-import marsImg from "../../assets/images/planet-mars-alone-pixel.png";
+import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.webp";
+import mercuryImg from "../../assets/images/planet-mercury-alone-pixel.webp";
+import venusImg from "../../assets/images/planet-venus-alone-pixel.webp";
+import earthImg from "../../assets/images/planet-earth-alone-pixel.webp";
+import marsImg from "../../assets/images/planet-mars-alone-pixel.webp";
 
 // ─── PLANET CONFIGURATION ────────────────────────────────────────────────────
 // size          → diameter of the planet image in px

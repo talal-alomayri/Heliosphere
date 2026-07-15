@@ -1,5 +1,5 @@
 import { useState } from "react";
-import solarSystemImg from "../assets/images/solar-system-pixel.png";
+import solarSystemImg from "../assets/images/solar-system-pixel.webp";
 
 export default function SolarSystemCard({ imageRef, contentRef }) {
   const [isHovered, setIsHovered] = useState(false);

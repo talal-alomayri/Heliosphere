@@ -2,8 +2,8 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import Navbar from '../../components/Navbar';
 import StarsBackground from '../../components/StarsBackground';
-import sunInfoImg from '../../assets/images/sun-info-pixel.png';
-import iconImg from '../../assets/images/sun-without-bg.png';
+import sunInfoImg from '../../assets/images/sun-info-pixel.webp';
+import iconImg from '../../assets/images/sun-without-bg.webp';
 import { useSun } from '../../hooks/useSpaceData';
 
 export default function SunPage() {

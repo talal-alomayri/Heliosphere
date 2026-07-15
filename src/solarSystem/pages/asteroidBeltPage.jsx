@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import asteroidBg from '../../assets/images/asteroid-belt-pixel.png';
+import asteroidBg from '../../assets/images/asteroid-belt-pixel.webp';
 import { useAsteroidBelt } from '../../hooks/useSpaceData';
 
 export default function AsteroidBeltPage() {

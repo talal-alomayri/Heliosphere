@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import carSpacePixel from '../assets/images/car-space-pixel.png';
+import carSpacePixel from '../assets/images/car-space-pixel.webp';
 
 export default function SpaceTransition({ isActive, onComplete }) {
   const containerRef = useRef(null);

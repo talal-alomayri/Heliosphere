@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import bgImg from '../../assets/images/planet-saturn-pixel.png';
-import iconImg from '../../assets/images/planet-saturn-alone-pixel.png';
+import bgImg from '../../assets/images/planet-saturn-pixel.webp';
+import iconImg from '../../assets/images/planet-saturn-alone-pixel.webp';
 import { useSaturn } from '../../hooks/useSpaceData';
 
 export default function SaturnPage() {

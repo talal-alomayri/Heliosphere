@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import StarsBackground from "../../components/StarsBackground";
-import jupiterImg from "../../assets/images/planet-jupiter-alone-pixel.png";
-import saturnImg from "../../assets/images/planet-saturn-alone-pixel.png";
-import uranusImg from "../../assets/images/planet-uranus-alone-pixel.png";
-import neptuneImg from "../../assets/images/planet-neptune-alone-pixel.png";
-import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.png";
+import jupiterImg from "../../assets/images/planet-jupiter-alone-pixel.webp";
+import saturnImg from "../../assets/images/planet-saturn-alone-pixel.webp";
+import uranusImg from "../../assets/images/planet-uranus-alone-pixel.webp";
+import neptuneImg from "../../assets/images/planet-neptune-alone-pixel.webp";
+import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.webp";
 
 // ─── PLANET CONFIGURATION ────────────────────────────────────────────────────
 // size          → diameter of the planet image in px

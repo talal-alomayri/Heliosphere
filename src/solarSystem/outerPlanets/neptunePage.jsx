@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import bgImg from '../../assets/images/planet-neptun-pixel.png';
-import iconImg from '../../assets/images/planet-neptune-alone-pixel.png';
+import bgImg from '../../assets/images/planet-neptun-pixel.webp';
+import iconImg from '../../assets/images/planet-neptune-alone-pixel.webp';
 import { useNeptune } from '../../hooks/useSpaceData';
 
 export default function NeptunePage() {

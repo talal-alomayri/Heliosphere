@@ -3,11 +3,11 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import StarsBackground from '../../components/StarsBackground';
-import innerPlanetsBg from '../../assets/images/inner-planets-background-pixel.png';
-import sunImg from '../../assets/images/sun-pixel.png';
-import innerPlanetsImg from '../../assets/images/inner-planets-pixel.png';
-import asteroidBeltImg from '../../assets/images/asteroid-belt-background-pixel.png';
-import outerPlanetsImg from '../../assets/images/outer-planets-pixel.png';
+import innerPlanetsBg from '../../assets/images/inner-planets-background-pixel.webp';
+import sunImg from '../../assets/images/sun-pixel.webp';
+import innerPlanetsImg from '../../assets/images/inner-planets-pixel.webp';
+import asteroidBeltImg from '../../assets/images/asteroid-belt-background-pixel.webp';
+import outerPlanetsImg from '../../assets/images/outer-planets-pixel.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
-import bgImg from '../../assets/images/planet-mars-info-pixel.png';
-import iconImg from '../../assets/images/planet-mars-alone-pixel.png';
+import bgImg from '../../assets/images/planet-mars-info-pixel.webp';
+import iconImg from '../../assets/images/planet-mars-alone-pixel.webp';
 import { useMars } from '../../hooks/useSpaceData';
 
 export default function MarsPage() {
