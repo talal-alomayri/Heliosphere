@@ -2,11 +2,14 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import StarsBackground from '../../components/StarsBackground';
 import sunInfoImg from '../../assets/images/sun-info-pixel.webp';
+import iconImg from '../../assets/images/sun-without-bg.webp';
 import { useSun } from '../../hooks/useSpaceData';
+import { useNavigate } from 'react-router-dom';
 
 export default function SunPage() {
   const containerRef = useRef(null);
   const contentRef   = useRef(null);
+  const navigate = useNavigate();
   const { data, isPending, isError } = useSun();
 
   useEffect(() => {
@@ -48,10 +51,19 @@ export default function SunPage() {
         }}
       />
       
+      {/* Mobile Back Button */}
+      <button 
+        onClick={() => navigate(-1)}
+        className="md:hidden absolute top-20 left-6 z-50 text-white flex items-center justify-center p-2 px-4 rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-sm font-bold tracking-wider hover:bg-black/70 transition-colors"
+      >
+        ← BACK
+      </button>
+
       <StarsBackground />
 
       <div className="relative z-10 h-full flex items-center" style={{ paddingTop: '64px' }}>
         <div ref={contentRef} className="w-full max-w-md px-8 md:px-12 flex flex-col gap-3">
+          <img src={iconImg} alt="The Sun" className="w-100 h-100 mb-2 md:hidden drop-shadow-[0_0_12px_rgba(251,191,36,0.5)] object-contain" />
           <h1
             className="text-4xl md:text-5xl font-bold text-yellow-400 leading-tight"
             style={{ textShadow: '0 0 8px #fbbf24, 0 0 24px #f59e0b' }}

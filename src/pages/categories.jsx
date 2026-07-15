@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Navbar from "../components/Navbar";
 import SolarSystemCard from "../component/solarSystemCard";
 import BlackHoleCard from "../blackHole/blackHoleCard";
 import SupernovaCard from "../supernove/supernoveCard";
@@ -128,7 +127,6 @@ export default function Categories() {
 
   return (
     <div ref={containerRef} className="min-h-[200vh] relative overflow-hidden">
-      <Navbar />
       <StarsBackground />
       <div className="relative z-10 flex flex-col pt-24">
         <div className="min-h-screen flex items-center justify-center">
