@@ -4,8 +4,10 @@ import StarsBackground from '../../components/StarsBackground';
 import bgImg from '../../assets/images/moon-info-pixel.webp';
 import iconImg from '../../assets/images/moon-without-bg.webp';
 import { useMoon } from '../../hooks/useSpaceData';
+import { useNavigate } from 'react-router-dom';
 
 export default function MoonPage() {
+  const navigate = useNavigate();
   const containerRef = useRef(null);
   const contentRef = useRef(null);
   const { data, isPending, isError } = useMoon();
@@ -27,6 +29,14 @@ export default function MoonPage() {
     <div ref={containerRef} className="h-screen overflow-hidden relative bg-black">
       <img src={bgImg} alt="THE MOON Background" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" />
       <StarsBackground />
+      {/* Mobile Back Button */}
+      <button 
+        onClick={() => navigate(-1)}
+        className="md:hidden absolute top-20 left-6 z-50 text-white flex items-center justify-center p-2 px-4 rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-sm font-bold tracking-wider hover:bg-black/70 transition-colors"
+      >
+        ← BACK
+      </button>
+
 
       <div className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 pt-20 pointer-events-none">
         <div ref={contentRef} className="max-w-2xl pointer-events-auto">

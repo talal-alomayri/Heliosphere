@@ -83,13 +83,21 @@ export default function EarthMoonPage() {
       {/* Animated star field */}
       <StarsBackground />
 
+      {/* Mobile Back Button */}
+      <button 
+        onClick={() => navigate(-1)}
+        className="md:hidden absolute top-40 left-6 z-50 text-white flex items-center justify-center p-2 px-4 rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-sm font-bold tracking-wider hover:bg-black/70 transition-colors"
+      >
+        ← BACK
+      </button>
+
       {/* Dark overlay to deepen the background */}
       <div className="fixed inset-0 bg-black/60 pointer-events-none z-[1]" />
 
       {/* Page title */}
       <div className="relative md:absolute top-0 left-0 right-0 z-20 flex justify-center pt-12 md:pt-20 pb-16 md:pb-0 pointer-events-none">
         <h1
-          className="text-5xl md:text-8xl font-bold text-white text-center"
+          className="text-5xl md:text-8xl font-bold text-white text-center mt-10"
           style={{ textShadow: "0 0 8px #93c5fd, 0 0 24px #3b82f6" }}
         >
           EARTH & MOON

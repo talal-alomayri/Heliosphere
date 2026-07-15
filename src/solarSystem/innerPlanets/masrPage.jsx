@@ -1,9 +1,11 @@
 
+import { useNavigate } from 'react-router-dom';
 
 
 
 
 export default function MarsPage() {
+  const navigate = useNavigate();
   return (
     <div>
       <h1>Mars</h1>

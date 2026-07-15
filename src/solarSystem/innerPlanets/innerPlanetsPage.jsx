@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import Navbar from "../../components/Navbar";
 import StarsBackground from "../../components/StarsBackground";
 import innerPlanetsBg from "../../assets/images/inner-planets-background-pixel.webp";
 import mercuryImg from "../../assets/images/planet-mercury-alone-pixel.webp";
@@ -102,7 +101,7 @@ export default function InnerPlanetsPage() {
       ref={containerRef}
       className="h-screen overflow-y-auto md:overflow-hidden relative bg-black"
     >
-      <Navbar />
+      
 
       {/* Background image — sits below the stars layer */}
       <img
@@ -115,10 +114,18 @@ export default function InnerPlanetsPage() {
       {/* Animated star field on top of the background image */}
       <StarsBackground />
 
+       {/* Mobile Back Button */}
+      <button 
+        onClick={() => navigate(-1)}
+        className="md:hidden absolute top-40 left-6 z-50 text-white flex items-center justify-center p-2 px-4 rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-sm font-bold tracking-wider hover:bg-black/70 transition-colors"
+      >
+        ← BACK
+      </button>
+
       {/* Page title */}
       <div className="relative md:absolute top-0 left-0 right-0 z-20 flex justify-center pt-12 md:pt-20 pb-8 md:pb-0 pointer-events-none">
         <h1
-          className="text-5xl md:text-8xl font-bold text-white text-center"
+          className="text-5xl md:text-8xl font-bold text-white text-center mt-10"
           style={{ textShadow: "0 0 8px #22d3ee, 0 0 24px #0891b2" }}
         >
           INNER PLANETS
