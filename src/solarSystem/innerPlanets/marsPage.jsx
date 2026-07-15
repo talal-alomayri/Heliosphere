@@ -26,8 +26,8 @@ export default function MarsPage() {
   ];
 
   return (
-    <div ref={containerRef} className="h-screen overflow-hidden relative bg-black">
-      <img src={bgImg} alt="MARS Background" aria-hidden="true" className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" />
+    <div ref={containerRef} className="h-screen overflow-y-auto overflow-x-hidden md:overflow-hidden relative bg-black">
+      <img src={bgImg} alt="MARS Background" aria-hidden="true" className="fixed md:absolute inset-0 w-full h-full object-cover z-0 pointer-events-none" />
       <StarsBackground />
       {/* Mobile Back Button */}
       <button 
@@ -38,7 +38,7 @@ export default function MarsPage() {
       </button>
 
 
-      <div className="absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 pt-20 pointer-events-none">
+      <div className="relative md:absolute inset-0 z-10 flex flex-col justify-center items-start px-8 md:px-24 pt-32 pb-20 md:pt-20 md:pb-0 min-h-screen md:min-h-0 pointer-events-none">
         <div ref={contentRef} className="max-w-2xl pointer-events-auto">
           <img src={iconImg} alt="Mars" className="w-100 h-100 mb-4 md:hidden drop-shadow-[0_0_12px_rgba(239,68,68,0.5)] object-contain" />
           <h1 className="text-6xl md:text-8xl font-bold text-left mb-6 text-red-400" style={{ textShadow: '0 0 8px #f87171, 0 0 24px #ef4444' }}>

@@ -35,7 +35,7 @@ export default function SunPage() {
   return (
     <div
       ref={containerRef}
-      className="h-screen overflow-hidden relative"
+      className="h-screen overflow-y-auto overflow-x-hidden md:overflow-hidden relative"
       style={{
         backgroundImage: `url(${sunInfoImg})`,
         backgroundSize: 'cover',
@@ -44,7 +44,7 @@ export default function SunPage() {
       }}
     >
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="fixed md:absolute inset-0 pointer-events-none"
         style={{
           background:
             'linear-gradient(to right, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.60) 42%, rgba(0,0,0,0.10) 72%, transparent 100%)',
@@ -61,7 +61,7 @@ export default function SunPage() {
 
       <StarsBackground />
 
-      <div className="relative z-10 h-full flex items-center" style={{ paddingTop: '64px' }}>
+      <div className="relative z-10 min-h-screen md:min-h-full flex items-center py-12 md:py-0" style={{ paddingTop: '100px' }}>
         <div ref={contentRef} className="w-full max-w-md px-8 md:px-12 flex flex-col gap-3">
           <img src={iconImg} alt="The Sun" className="w-100 h-100 mb-2 md:hidden drop-shadow-[0_0_12px_rgba(251,191,36,0.5)] object-contain" />
           <h1
